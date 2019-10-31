@@ -9,15 +9,18 @@ before_script:
   - npm install
   - chmod +x ./travis_scripts/setup.sh
   - chmod +x ./travis_scripts/web3-tests.sh
-  
+
 jobs:
   include:
     - stage: "Setup"
       name: "Clone test file from github and start ganache"
       script: ./travis_scripts/setup.sh
+      node_js: "10"
     - stage: "Truffle tests"
       name: "Truffle tests"
       script: truffle test
+      node_js: "10"
     - stage: "Web3 Tests"
       name: "Web3 tests"
+      node_js: "10"
       script: ./travis_scripts/web3-tests.sh
