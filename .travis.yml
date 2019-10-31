@@ -8,15 +8,18 @@ before_script:
   - npm install -g ganache-cli
   - npm install -g truffle@v5.0.5
   - npm install
-
-script:
-  - git clone https://gist.github.com/f2da4709b636dce11de911975db6c818.git
-  - rm ./test/ProjectSubmission.test.js
-  - # mv ./f2da4709b636dce11de911975db6c818/certification-SupplyChain.test.js ./test/ProjectSubmission.test.js
   - ganache-cli &
-  - sleep 5
-  - truffle test &
-  - sleep 30
-  - truffle migrate &
-  - sleep 10
-  - npm run test
+
+jobs:
+  include:
+    - language: node_js
+      node_js: 10
+      script:
+        - sleep 5
+        - truffle test
+    - language: node_js
+      node_js: 10
+      script:
+        - truffle migrate &
+        - sleep 10
+        - npm run test
