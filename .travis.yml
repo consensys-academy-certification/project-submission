@@ -5,12 +5,17 @@ language: node_js
 
 before_script:
   - npm install -g ganache-cli
-  - npm install -g truffle@5.0.0
+  - npm install -g truffle@v5.0.5
+  - npm install
 
-script:
-  - git clone https://gist.github.com/f2da4709b636dce11de911975db6c818.git
-  - rm ./test/ProjectSubmission.test.js
-  - mv ./f2da4709b636dce11de911975db6c818/certification-SupplyChain.test.js ./test/ProjectSubmission.test.js
-  - ganache-cli &
-  - sleep 5
-  - truffle test
+jobs:
+  include:
+    - stage: "Setup"
+      name: "Clone test file from github and start ganache"
+      script: ./travis_scripts/setup.sh
+    - stage: "Truffle tests"
+      name: "Truffle tests"
+      script: truffle test
+    - stage: "Web3 Tests"
+      name: "Web3 tests"
+      script: ./travis_scripts/web3-tests.sh

@@ -33,4 +33,11 @@ contract('ProjectSubmission', accounts => {
         
     })
 
+    /* 
+      It would be interesting to include a number of tests that are fully implemented,
+      but also include a set of tests that only have the test condition statement and
+      the assert statement, the test itself is not actually implemented. The student
+      would be required to implement the functionality of the test. 
+    */
+
 })

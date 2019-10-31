@@ -1,13 +1,13 @@
 # Coding Assignment
 In this coding assignment you will have to implement the smart contract Project Submission following the instructions provided in this document.
 
-The ProjectSubmission.sol file contains commented pieces of code that have to be used in your solution. Variables and function names in these pieces of code should not be modified. Only the file ProjectSubmission.sol should be modified for this assignment, otherwise your submission may be disqualified.
+The ProjectSubmission.sol file contains a commented contract stub that you will use in your solution. Variables and function names in this contract stub should not be modified. Only the file ProjectSubmission.sol should be modified for this assignment, otherwise your submission may be disqualified.
 
 You can look at the tests in ProjectSubmission.test.js and run truffle test to be sure that your contract is working properly.
 
 **IMPORTANT:**
 
-Once you coded the smart contract and committed all the changes to your personal assignment repository (consensys-academy-certification/project-submission-your_github_username), submit your GitHub username at the bottom of the Coding Assignment page in the exam you are taking in our platform [https://learn.consensys.net](https://learn.consensys.net) so it can be graded. This submission has to be done before the expiry date of the certification exam and can only be done once (be sure you commit your solution first).
+Once you code the smart contract and commit all the changes to your personal assignment repository (consensys-academy-certification/project-submission-your_github_username), submit your GitHub username at the bottom of the Coding Assignment page in the exam you are taking in our platform [https://learn.consensys.net](https://learn.consensys.net) so it can be graded. This submission has to be done before the expiry date of the certification exam and can only be done once (be sure you commit your solution before submitting).
 
 ## Project Submission specification
 Your task is to develop a smart contract that will allow students to submit projects that, if approved, will be able to receive donations.
@@ -16,7 +16,7 @@ Only students from registered universities will be able to submit projects to th
 
 The donation values will be divided between the project, the university, and the smart contract owner.
 
-For easier understanding, this task is split into 5 steps where you will implement the requested functionalities. The smart contract should compile with no errors by the end of each step. You will find additional instructions as comments into the ProjectSubmission.sol file.
+This task is split into 5 steps where you will implement the requested functionality. The smart contract should compile with no errors by the end of each step. You will find additional instructions as comments into the ProjectSubmission.sol file.
 
 ### Step 1
 Create a smart contract that allows only the contract owner to register universities.
