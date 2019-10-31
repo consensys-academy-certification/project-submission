@@ -9,7 +9,7 @@ before_script:
   - npm install
   - chmod +x ./travis_scripts/setup.sh
   - chmod +x ./travis_scripts/web3-tests.sh
-
+  
 jobs:
   include:
     - stage: "Setup"
