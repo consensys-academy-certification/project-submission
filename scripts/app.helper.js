@@ -11,7 +11,6 @@ let Web3 = require('web3')
 const ProjectSubmission = require('../build/contracts/ProjectSubmission.json')
 let gasAmount = 3000000
 
-
 let App = {
 
     /*
