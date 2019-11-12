@@ -42,53 +42,45 @@ let App = {
 
     // The init() function will be called after the Web3 object is set in the test file
     async init() {
-        this.web3 = new Web3(web3.givenProvider)
-        this.networkId = await web3.eth.net.getId()
-        this.contract = new this.web3.eth.Contract(ProjectSubmission.abi, ProjectSubmission.networks[this.networkId].address)
+
     },
 
     // Get the account made available by web3
     async getAccount(){
-        let accounts = await this.web3.eth.getAccounts()
-        this.account = accounts[0]
+
     },
 
     // Read the owner state from the contract
     // Return the owner address
     async readOwnerAddress(){
-        this.contractOwner = await this.contract.methods.owner().call()
-        return this.contractOwner
+
     },
 
     // Read the owner balance from the contract
     // Return the owner balance
     async readOwnerBalance(){
-        let result = await this.contract.methods.ownerBalance().call()
-        return result
+
     },
 
     // Read the state of a provided University account
     // This function takes one address parameter called account    
     // Return the state object 
     async readUniversityState(account){
-        let result = await this.contract.methods.universities(account).call()
-        return result
+
     },
 
     // Register a university when this function is called
     // This function takes one address parameter called account
     // Return the transaction object 
     async registerUniversity(account){
-        let result = await this.contract.methods.registerUniversity(account).send({from: web3.eth.defaultAccount})
-        return result
+
     },
 
     // Disable the university at the provided address when this function is called
     // This function takes one address parameter called account
     // Return the transaction object
     async disableUniversity(account){
-        let result = await this.contract.methods.disableUniversity(account).send({from: web3.eth.defaultAccount})
-        return result
+
     },
 
     // Submit a new project when this function is called
@@ -96,8 +88,7 @@ let App = {
     //   - a projectHash, an address (universityAddress), and a number (amount to send with the transaction)   
     // Return the transaction object 
     async submitProject(projectHash, universityAddress, amount){
-        let result = await this.contract.methods.submitProject(projectHash, universityAddress).send({gas: gasAmount, from: web3.eth.defaultAccount, value: this.web3.utils.toWei(amount.toString(), 'ether')})
-        return result
+
     },
 
     // Review a project when this function is called
@@ -105,8 +96,7 @@ let App = {
     //   - a projectHash and a number (status)
     // Return the transaction object
     async reviewProject(projectHash, status){
-        let result = await this.contract.methods.reviewProject(projectHash, status).send({from: web3.eth.defaultAccount})
-        return result
+
     },
 
     // Read a projects' state when this function is called
@@ -114,8 +104,7 @@ let App = {
     //   - a projectHash
     // Return the transaction object
     async readProjectState(projectHash){
-        let result = await this.contract.methods.projects(projectHash).call()
-        return result
+
     },
 
     // Make a donation when this function is called
@@ -123,15 +112,13 @@ let App = {
     //   - an address (account), a projectHash and a number (amount)
     // Return the transaction object
     async donate(account, projectHash, amount){
-        let result = await this.contract.methods.donate(account, projectHash).send({from: web3.eth.defaultAccount, value: amount.toString()})
-        return result
+
     },
 
     // Allow a university or the contract owner to withdraw their funds when this function is called
     // Return the transaction object
     async withdraw(){
-        let result = await this.contract.methods.withdraw().send({from: web3.eth.defaultAccount})
-        return result
+
     },
 
     // Allow a project author to withdraw their funds when this function is called
@@ -139,8 +126,7 @@ let App = {
     //   - a projectHash
     // Return the transaction object
     async authorWithdraw(projectHash){
-        let result = await this.contract.methods.withdraw(projectHash).send({from: web3.eth.defaultAccount})
-        return result
+
     }
 } 
 
