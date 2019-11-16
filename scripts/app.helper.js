@@ -1,5 +1,5 @@
 /*
-    This Javascript script file is test your use and implementation of the 
+    This Javascript script file is to test your use and implementation of the 
     web3.js library.
 
     Using the web3.js library in the Javascript files of a front-end application
@@ -8,7 +8,7 @@
 */
 
 let Web3 = require('web3')
-const ProjectSubmission = require('../build/contracts/ProjectSubmission.json')
+const ProjectSubmission = artifacts.require('ProjectSubmission')
 let gasAmount = 3000000
 
 let App = {
@@ -22,34 +22,35 @@ let App = {
         When sending transactions to the contract, set the "from" account to
         web3.eth.defaultAccount. The default account is changed in the ../test/test.app.js
         file to simulate sending transactions from different accounts.
-          - i.e. myContract.methods.myMethod().send({ from: web3.eth.defaultAccount ... })
+          - i.e. myContract.methods.myMethod({ from: web3.eth.defaultAccount ... })
 
         Each function in the App object should return the full transaction object provided by
-        web3.js
-        For example 
+        web3.js. For example 
 
         async myFunction(){
-            let result = await myContract.methods.myMethod().send({ from: web3.eth.defaultAccount ... })
+            let result = await myContract.myMethod({ from: web3.eth.defaultAccount ... })
             return result
         }
     */
 
     web3:          null,
+    networkId:     null,
     contract:      null,
     account:       null,
     contractOwner: null,
 
     // The init() function will be called after the Web3 object is set in the test file
+    // This function should update App.web3, App.networkId and App.contract
     async init() {
 
     },
 
-    // Get the account made available by web3
+    // This function should get the account made available by web3 and update App.account
     async getAccount(){
 
     },
 
-    // Read the owner state from the contract
+    // Read the owner state from the contract and update App.contractOwner
     // Return the owner address
     async readOwnerAddress(){
 
@@ -107,10 +108,10 @@ let App = {
     },
 
     // Make a donation when this function is called
-    // This function takes 3 parameters
-    //   - an address (account), a projectHash and a number (amount)
+    // This function takes 2 parameters
+    //   - a projectHash and a number (amount)
     // Return the transaction object
-    async donate(account, projectHash, amount){
+    async donate(projectHash, amount){
 
     },
 
@@ -123,6 +124,7 @@ let App = {
     // Allow a project author to withdraw their funds when this function is called
     // This function takes 1 parameter
     //   - a projectHash
+    // Use the following format to call this function: this.contract.methods['withdraw(bytes32)'](...)
     // Return the transaction object
     async authorWithdraw(projectHash){
 
