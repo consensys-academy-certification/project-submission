@@ -1,14 +1,11 @@
 # Assignment Description
 In this coding assignment you will have to implement the smart contract **Project Submission** and a script using **web3.js** following the instructions provided in this document.
 
-[Please follow this link](https://classroom.github.com/a/KMKZTm65) to create your personal repository on GitHub Class to work on this coding assignment. This process will create a copy of the [project-submission](https://github.com/consensys-academy-certification/project-submission) repository, which is a truffle project that contains the required smart contract and script to be coded.
-
 Only the files **ProjectSubmission.sol** and **app.helper.js** should be modified for this assignment, otherwise your answer may be disqualified. 
 
 You can look at the tests in **ProjectSubmission.test.js** and **test.app.js** and run `truffle test` to ensure that your contract is working properly.
 
-__**IMPORTANT**__: Once you finish coding this assignment, commit all the changes to your personal assignment repository (**consensys-academy-certification/project-submission-*YOUR_GITHUB_USERNAME***) and submit your GitHub username at the bottom of this page so your assignment can be graded. This submission has to be done before the expiry date of the certification exam and can only be done once (be sure you commit your solution first).
-
+__**IMPORTANT**__: Once you finish coding this assignment, commit all the changes to your personal assignment repository (**consensys-academy-certification/project-submission-*YOUR_GITHUB_USERNAME***) and submit your GitHub username at [https://learn.consensys.net](https://learn.consensys.net). This submission has to be done before the expiry date of the certification exam and can only be done once (be sure you commit your solution first).
 
 
 # Project Submission Specification
