@@ -1,3 +1,5 @@
+// ===== DO NOT MODIFY THIS FILE =====
+
 var assert = require('assert')
 const Web3 = require('web3')
 
