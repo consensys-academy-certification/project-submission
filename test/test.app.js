@@ -10,10 +10,9 @@ let accounts = []
         - properties names of structs
         - university and project data structures in contract storage
     that are defined in the ProjectSubmission.sol file.
-
 */
 
-describe('test', function() {
+describe('App Tests', function() {
 
     let ownerAccount
     let universityAccount1
@@ -36,80 +35,78 @@ describe('test', function() {
         await App.init()
     })
 
-    describe('calling the contract', function() {
+    describe('Calling the contract', function() {
 
-        it("gets the current account", async function(){
+        it("Gets the current account", async function(){
             await App.getAccount()
             assert.equal(ownerAccount, App.account, "The accounts should be the same")
         })
 
-        it("has a function to read the contract owner", async function(){
+        it("Has a function to read the contract owner", async function(){
             let result = await App.readOwnerAddress()
-            assert.equal(ownerAccount, result, "owner should be the first account")
+            assert.equal(ownerAccount, result, "Owner should be the first account")
         })
 
-        it("has a function to read the contract owner balance", async function(){
+        it("Has a function to read the contract owner balance", async function(){
             let result = await App.readOwnerBalance()
-            assert.equal(result, 0, "owner should be the first account")
+            assert.equal(result, 0, "Owner should be the first account")
         })
 
-        it("has a function for the owner to register a University", async function(){
+        it("Has a function for the owner to register a University", async function(){
             let result = await App.registerUniversity(universityAccount1)
-            assert.equal(result.status, true, "registering a university should result in a successful transaction")
+            assert.equal(result.receipt.status, true, "Registering a university should result in a successful transaction")
         })
 
-        it("has a function to read the university state", async function(){
+        it("Has a function to read the university state", async function(){
             await App.registerUniversity(universityAccount1)
             let result = await App.readUniversityState(universityAccount1)
-            assert.equal(result.balance, 0, "balance of university 1 should be 0")
-            assert.equal(result.acceptingSubmissions, true, "The university should be accepting submissions")
+            assert.equal(result.balance, 0, "Balance of university 1 should be 0")
+            assert.equal(result.available, true, "The university should be accepting submissions")
         })
 
-        it("has a function to let the owner disable the university", async function(){
+        it("Has a function to let the owner disable the university", async function(){
             let result = await App.disableUniversity(universityAccount1)
-            assert.equal(result.status, true, "The university should be accepting submissions")
+            assert.equal(result.receipt.status, true, "The university should be accepting submissions")
             let universityState1 = await App.readUniversityState(universityAccount1)
-            assert.equal(universityState1.acceptingSubmissions, false, "")
+            assert.equal(universityState1.available, false, "")
         })
 
-        it("has a function to let anyone submit projects", async function(){
+        it("Has a function to let anyone submit projects", async function(){
             await App.registerUniversity(universityAccount1)
             web3.eth.defaultAccount = userAccount1
             let etherAmount = 1
             let result = await App.submitProject(hash1, universityAccount1, etherAmount)
-            assert.equal(result.status, true, "registering a university should result in a successful transaction")
+            assert.equal(result.receipt.status, true, "Registering a university should result in a successful transaction")
         })
 
-        it("has a function to let the owner review projects", async function(){
+        it("Has a function to let the owner review projects", async function(){
             web3.eth.defaultAccount = ownerAccount
             let result = await App.reviewProject(hash1, 2)
-            assert.equal(result.status, true, "Calling the reviewProject function should result in a successful transaction")
+            assert.equal(result.receipt.status, true, "Calling the reviewProject function should result in a successful transaction")
         })
 
-        it("has a function to let anyone read a projects' state", async function(){
+        it("Has a function to let anyone read a projects' state", async function(){
             let result = await App.readProjectState(hash1)
-            assert.equal(result.author, userAccount1, "the author of project associated with hash1 should be userAccount1")
+            assert.equal(result.author, userAccount1, "The author of project associated with hash1 should be userAccount1")
         })
 
-        it("has a function to let anyone donate to a univesrity and a project", async function(){
+        it("Has a function to let anyone donate to a univesrity and a project", async function(){
             web3.eth.defaultAccount = userAccount2
             let amount = 100
-            let result = await App.donate(universityAccount1, hash1, amount)
-            assert.equal(result.status, true, "Calling the donate function should result in a successful transaction")
+            let result = await App.donate(hash1, amount)
+            assert.equal(result.receipt.status, true, "Calling the donate function should result in a successful transaction")
         })
 
-        it("has a function to let the owner withdraw their funds", async function(){
+        it("Has a function to let the owner withdraw their funds", async function(){
             web3.eth.defaultAccount = ownerAccount
-            let result = await App.reviewProject(hash1, 2)
-            assert.equal(result.status, true, "Calling the withdraw function should result in a successful transaction")
+            let result = await App.reviewProject(hash2, 2)
+            assert.equal(result.receipt.status, true, "Calling the withdraw function should result in a successful transaction")
         })
 
-        it("has a function to let the project authors withdraw their funds", async function(){
+        it("Has a function to let the project authors withdraw their funds", async function(){
             web3.eth.defaultAccount = userAccount1
             let result = await App.authorWithdraw(hash1)
-            assert.equal(result.status, true, "Calling the authorWithdraw function should result in a successful transaction")
+            assert.equal(result.receipt.status, true, "Calling the authorWithdraw function should result in a successful transaction")
         })
-    });
-});
-
-
+    })
+})
