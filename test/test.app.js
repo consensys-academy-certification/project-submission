@@ -101,7 +101,7 @@ describe('App Tests', function() {
 
         it("Has a function to let the owner withdraw their funds", async function(){
             web3.eth.defaultAccount = ownerAccount
-            let result = await App.reviewProject(hash2, 2)
+            let result = await App.withdraw(hash2)
             assert.equal(result.receipt.status, true, "Calling the withdraw function should result in a successful transaction")
         })
 
